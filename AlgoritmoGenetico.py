@@ -13,6 +13,7 @@ class AlgoritmoGenetico:
         self.POP = []
         self.POP_AUX = []
         self.aptidao = []
+        self.aptidao_perc = [] #porcentagem
         self.populacao_inicial()
     
     def populacao_inicial(self):
@@ -20,6 +21,25 @@ class AlgoritmoGenetico:
         
         for i in range(self.TAM_POP):
             self.POP.append(np.random.randint(0, 2, self.TAM_GENE))
+
+    def pre_roleta(self):
+        aptidao_total = sum(self.aptidao)
+        self.aptidao_perc = []
+        
+        for i in range(self.TAM_POP):
+            x = (self.aptidao[i] * 100)/aptidao_total
+            self.aptidao_perc.append(x)
+            x = 0
+    def roleta(self):
+        sorteado = np.random.uniform(0.1, 100.1)
+        quintal = 0.0
+        for i in range(self.TAM_POP):
+            quintal += self.aptidao_perc[i]
+            
+            if quintal > sorteado:
+                return i
+        return 0
+
 
     def cruzamento_simples(self, pai1, pai2):
         print("Cruzamento com 1 ponto de corte.")
