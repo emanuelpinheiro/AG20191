@@ -54,7 +54,16 @@ class AlgoritmoGenetico:
                 
         self.POP_AUX.append(desc1)
         self.POP_AUX.append(desc2)    
-        
+    
+    ## Função de mutação. Deve ser utilizada na POP_AUX
+    ## após sua população estar completa.
+    def mutacao(self, i):
+        g = np.random.randint(0, self.TAM_GENE)
+        if self.POP_AUX[i][g] == 0:
+            self.POP_AUX[i][g] = 1
+        else:
+            self.POP_AUX[i][g] = 0
+            
     def avaliacao(self):
         livros = []
         livros.append(0.6)
