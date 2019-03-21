@@ -30,6 +30,7 @@ class AlgoritmoGenetico:
             x = (self.aptidao[i] * 100)/aptidao_total
             self.aptidao_perc.append(x)
             x = 0
+
     def roleta(self):
         sorteado = np.random.uniform(0.1, 100.1)
         quintal = 0.0
@@ -40,7 +41,43 @@ class AlgoritmoGenetico:
                 return i
         return 0
 
-
+    def operadores_geneticos(self):
+        tx_cruzamento_simples = 30
+        tx_cruzamento_uniforme = 70
+        tx_elitismo = 
+        tx_mutacao = 2
+        
+        self.POP_AUX = []
+        
+        self.avaliacao()
+        self.pre_roleta()
+        
+        ## cruzamento simples
+        qtd = (self.TAM_POP * tx_cruzamento_simples)/100
+        for i in range(qtd):
+            pai1 = self.roleta()
+            pai2 = self.roleta()
+            while pai1 == pai2:
+                pai2 = self.roleta()
+            self.cruzamento_simples(pai1, pai2)
+        
+        ## cruzamento uniforme
+        qtd = (self.TAM_POP * tx_cruzamento_uniforme)/100
+        for i in range(qtd):
+            pai1 = self.roleta()
+            pai2 = self.roleta()
+            while pai1 == pai2:
+                pai2 = self.roleta()
+            self.cruzamento_uniforme(pai1, pai2)  
+        
+        ## GARANTIR O TAMANHO POPULACIONAL.
+        
+         ## mutação
+        qtd = (self.TAM_POP * tx_mutacao)/100
+        for i in range(qtd):
+            quem = np.random.randint(0, self.TAM_POP)
+            self.mutacao(quem)
+        
     def cruzamento_simples(self, pai1, pai2):
         print("Cruzamento com 1 ponto de corte.")
         
