@@ -7,6 +7,6 @@ Algoritmo Genético
 @author: Marco
 """
 
-from AlgoritmoGenetico import AlgoritmoGenetico as AG
+from AlgoritmoGeneticoSudoku import AlgoritmoGenetico as AG
 
-ag = AG(5, 4, 4)
+ag = AG(5, 16, 4)
