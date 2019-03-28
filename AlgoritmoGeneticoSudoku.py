@@ -171,18 +171,25 @@ class AlgoritmoGenetico:
         self.POP = self.POP_AUX.copy()
         
     def avaliacao(self):
-        livros = []
-        livros.append(0.6)
-        livros.append(1.6)
-        livros.append(0.8)
-        livros.append(0.7)
-        livros.append(1.2)
-        livros.append(0.3)
-        livros.append(0.1)
-        livros.append(1.4)
-        livros.append(1.3)
-        livros.append(0.5)
+
+        ###
+        #g1: avaliar os alelos
+        #lucas, *mateus, diego
+        #g2: avaliar colunas
+        #patrícia, nilvan, *samuel
+        #g3: avaliar quadrantes
+        #matheus, *thalyson, vagner
+        #g4: juntar tudo e atribuir a aptidao.
+        # pensar em possibilidades de calcular 
+        # quando um indivíduo é melhor q outro
+        #julieta, *rafael, igor, thais
         
+        #mateusasevedo
+        #sanka01
+        #thalysonlira
+        #flamolino
+                
+        ###
         self.aptidao = []
         
         for i in range(self.TAM_POP):
@@ -190,6 +197,7 @@ class AlgoritmoGenetico:
             for g in range(self.TAM_GENE):
                 peso += (self.POP[i][g] * livros[g])
             self.aptidao.append(peso)
+
 
     def pegar_melhor_individuo(self):
         apt = max(self.aptidao)
