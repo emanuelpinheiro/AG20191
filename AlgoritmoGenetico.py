@@ -17,6 +17,7 @@ class AlgoritmoGenetico:
         self.aptidao_perc = [] #porcentagem
         self.numero_geracoes = numero_geracoes
         self.populacao_inicial()
+        #self.grafico = plt.plot([],[])
     
     def populacao_inicial(self):
         print("Criando pupulação inicial!")
@@ -47,15 +48,15 @@ class AlgoritmoGenetico:
         tx_cruzamento_uniforme = 70
         tx_elitismo = 0
         tx_mutacao = 2
-        
+        tx_elitismo = 10
         
         for geracao in range(self.numero_geracoes):
             self.POP_AUX = []
             
             self.avaliacao()
             q, apt = self.pegar_melhor_individuo()
-            self.exibe_grafico_evolucao(geracao, apt)
-            self.exibe_melhor_individuo(geracao)
+            #self.exibe_grafico_evolucao(geracao, apt)
+            #self.exibe_melhor_individuo(geracao)
             
             self.pre_roleta()
             
@@ -77,6 +78,11 @@ class AlgoritmoGenetico:
                     pai2 = self.roleta()
                 self.cruzamento_uniforme(pai1, pai2)  
             
+            #elitismo
+            qtd = (self.TAM_POP * tx_elitismo)/100
+            print("Elitismo")
+            #self.elitismo(qtd)
+            
             ## GARANTIR O TAMANHO POPULACIONAL.
             
              ## mutação
@@ -86,6 +92,7 @@ class AlgoritmoGenetico:
                 self.mutacao(quem)
             
             self.substituicao()
+        #self.grafico.show()
         
     def cruzamento_simples(self, pai1, pai2):
         #print("Cruzamento com 1 ponto de corte.")
@@ -130,6 +137,21 @@ class AlgoritmoGenetico:
         else:
             self.POP_AUX[i][g] = 0
 
+    def elitismo(self, qtd):
+        ## ordenação por aptidão
+        aptidao_index = []
+        for i in range(self.TAM_POP):
+            aptidao_index.append([self.aptidao[i], i])
+            
+        ord_aptidao = sorted(aptidao_index, key=lambda aptidao_index:aptidao_index[0], reverse=True)
+        
+        for i in range(int(qtd)):
+            eleito = np.zeros(self.TAM_GENE, dtype=int)
+            for g in range(self.TAM_GENE):
+                eleito[g] = self.POP[ord_aptidao[i][1]][g]
+            self.POP_AUX.append(eleito)
+            
+            
     def substituicao(self):
         self.POP = self.POP_AUX.copy()
         
@@ -166,6 +188,5 @@ class AlgoritmoGenetico:
         print("Geração: {} | Indivíduo: {} | Aptidão: {}".format(geracao, quem, apt))
 
     def exibe_grafico_evolucao(self, g, apt):
-        fig, ax = plt.subplots()
-        ax.plot(g, apt)
-        plt.show()
+        self.grafico.plot(g, apt)
+        
