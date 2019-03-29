@@ -176,6 +176,14 @@ class AlgoritmoGenetico:
         ###
         #g1: avaliar os alelos
         #lucas, *mateus, diego
+        for j in range(0, 4):
+            avaliacao_linha = 0
+            for i in range(0, 4):
+                avaliacao_linha += (self.POP[0][((j * 4) + i)])
+            if avaliacao_linha != 10:
+                self.aptidao = 0
+            ##print(avaliacao_linha)
+        
         #g2: avaliar colunas
         #patrícia, nilvan, *samuel
         for i in range(self.TAM_POP):
