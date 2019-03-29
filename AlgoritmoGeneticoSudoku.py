@@ -17,6 +17,7 @@ class AlgoritmoGenetico:
         self.aptidao_perc = [] #porcentagem
         self.numero_geracoes = numero_geracoes
         self.populacao_inicial()
+        self.aptidao_coluna = []
         #self.grafico = plt.plot([],[])
     
     def populacao_inicial(self):
@@ -177,6 +178,8 @@ class AlgoritmoGenetico:
         #lucas, *mateus, diego
         #g2: avaliar colunas
         #patrícia, nilvan, *samuel
+        for i in range(self.TAM_POP):
+            self.somacoluna(i)
         #g3: avaliar quadrantes
         #matheus, *thalyson, vagner
         #g4: juntar tudo e atribuir a aptidao.
@@ -192,11 +195,21 @@ class AlgoritmoGenetico:
         ###
         self.aptidao = []
         
-        for i in range(self.TAM_POP):
-            peso = 0.0
-            for g in range(self.TAM_GENE):
-                peso += (self.POP[i][g] * livros[g])
-            self.aptidao.append(peso)
+        # for i in range(self.TAM_POP):
+        #     peso = 0.0
+        #     for g in range(self.TAM_GENE):
+        #         peso += (self.POP[i][g] * livros[g])
+        #     self.aptidao.append(peso)
+
+
+    def somacoluna(self,ind):
+        aptidao_coluna_individuo =  np.zeros(4, dtype=int)
+        for j in range(4):
+
+            for i in range(4):
+                # print("I: {} | J: {} | X: {}".format(i, j, (i)*4+j))
+                aptidao_coluna_individuo[j] += self.POP[ind][(i)*4+j]
+        self.aptidao_coluna.append(aptidao_coluna_individuo)
 
 
     def pegar_melhor_individuo(self):
