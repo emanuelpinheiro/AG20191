@@ -19,6 +19,7 @@ class AlgoritmoGenetico:
         self.numero_geracoes = numero_geracoes
         self.populacao_inicial()
         self.aptidao_coluna = []
+        self.aptidao_quadrante = []
         #self.grafico = plt.plot([],[])
     
     def populacao_inicial(self):
