@@ -11,7 +11,7 @@ class AlgoritmoGenetico:
         print("Algoritmo Genético")
         self.TAM_POP = TAM_POP
         self.TAM_GENE = TAM_GENE
-        self.TAM_MATRIZ = TAM_GENE ** (1/2)
+        self.TAM_MATRIZ = int(TAM_GENE ** (1/2))
         self.POP = []
         self.POP_AUX = []
         self.aptidao = []
