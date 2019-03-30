@@ -11,6 +11,7 @@ class AlgoritmoGenetico:
         print("Algoritmo Genético")
         self.TAM_POP = TAM_POP
         self.TAM_GENE = TAM_GENE
+        self.TAM_MATRIZ = TAM_GENE ** (1/2)
         self.POP = []
         self.POP_AUX = []
         self.aptidao = []
@@ -190,6 +191,7 @@ class AlgoritmoGenetico:
             self.somacoluna(i)
         #g3: avaliar quadrantes
         #matheus, *thalyson, vagner
+        self.avaliar_quadrante()
         #g4: juntar tudo e atribuir a aptidao.
         # pensar em possibilidades de calcular 
         # quando um indivíduo é melhor q outro
@@ -218,7 +220,30 @@ class AlgoritmoGenetico:
                 # print("I: {} | J: {} | X: {}".format(i, j, (i)*4+j))
                 aptidao_coluna_individuo[j] += self.POP[ind][(i)*4+j]
         self.aptidao_coluna.append(aptidao_coluna_individuo)
+        
+    # 3 - Avaliacao da aptidao do quadrante
+    def avaliar_quadrante(self):
+        raiz = int(self.TAM_MATRIZ ** (1/2))      
+        for p in range(self.TAM_POP):
+            x = 0 
+            y = 0
+            aptidao = 10
+            individuo = self.POP[p]
+            for k in range(self.TAM_MATRIZ):
+              soma = 0
+              for j in range(raiz):
+                for i in range(raiz):
+                  soma += individuo[(((j + y) * 4) + (i + x))]
+              if x < self.TAM_MATRIZ - raiz:
+                x += raiz
+              else:
+                x = 0
+                y += raiz
 
+              if soma > 10:
+                aptidao = 0
+                break
+            self.aptidao_quadrante.append(aptidao)
 
     def pegar_melhor_individuo(self):
         apt = max(self.aptidao)
