@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Algoritmo Genético
-
 """
 import numpy as np
 import matplotlib.pyplot as plt
@@ -205,6 +204,7 @@ class AlgoritmoGenetico:
                 
         ###
         self.aptidao = []
+        self.atribuir_aptidao()
         
         # for i in range(self.TAM_POP):
         #     peso = 0.0
@@ -246,6 +246,49 @@ class AlgoritmoGenetico:
                 break
             self.aptidao_quadrante.append(aptidao)
 
+    # Grupo 4 - Atribuindo aptidao
+    def atribuir_aptidao(self)
+        for p in range(self.TAM_POP):
+            ind = self.POP[p]
+
+            g1 = ind[0]
+            g2 = ind[1]
+            g3 = ind[2]
+            g4 = ind[3]
+            aptidao = 0
+            # regra
+            # quanto mais distante o melhor gene (4) está do pior gene (1) melhor, 
+            # e quanto mais proximo o melhor gene está do segundo melhor gene (3), melhor     [1][2][3][4] ou [4][3][2][1] (melhores individuos)       
+            if g1 > g4 and g1 > g3 and g1 > g2:
+                if g1 == 4 and g4 == 1:
+                    if g2 == 3:
+                        # individuo ótimo
+                        aptidao = 10
+                    else:
+                        #individuo bom
+                        aptidao = 10 / 2
+                else:
+                    #individio ruim
+                    aptidao = 10 / 4
+            else if g4 > g1 and g4 > g3 and g4 > g2:
+                if g4 == 4 and g1 == 1:
+                    if g3 == 3:
+                        # melhor individio
+                        aptidao = 10
+                    else:
+                        # individio bom
+                        aptidao = 10 / 2
+                else:
+                    # individio ruim
+                    aptidao = 10 / 4
+            else: 
+                # individuo péssimo
+                aptidao = 1
+            
+            else.aptidao.append(aptidao)
+
+
+
     def pegar_melhor_individuo(self):
         apt = max(self.aptidao)
         quem = self.aptidao.index(apt)
@@ -258,5 +301,4 @@ class AlgoritmoGenetico:
         print("Geração: {} | Indivíduo: {} | Aptidão: {}".format(geracao, quem, apt))
 
     def exibe_grafico_evolucao(self, g, apt):
-        self.grafico.plot(g, apt)
-        
+self.grafico.plot(g, apt)
