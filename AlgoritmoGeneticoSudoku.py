@@ -285,7 +285,7 @@ class AlgoritmoGenetico:
                 # individuo péssimo
                 aptidao = 1
             
-            else.aptidao.append(aptidao)
+            self.aptidao.append(aptidao)
 
 
 
