@@ -176,7 +176,7 @@ class AlgoritmoGenetico:
 
         ###
         #g1: avaliar os alelos
-        #lucas, *mateus, diego
+        #lucas, *mateus, diego, lonardo
         for j in range(0, 4):
             avaliacao_linha = 0
             for i in range(0, 4):
@@ -247,7 +247,7 @@ class AlgoritmoGenetico:
             self.aptidao_quadrante.append(aptidao)
 
     # Grupo 4 - Atribuindo aptidao
-    def atribuir_aptidao(self)
+    def atribuir_aptidao(self):
         for p in range(self.TAM_POP):
             ind = self.POP[p]
 
@@ -270,7 +270,7 @@ class AlgoritmoGenetico:
                 else:
                     #individio ruim
                     aptidao = 10 / 4
-            else if g4 > g1 and g4 > g3 and g4 > g2:
+            elif g4 > g1 and g4 > g3 and g4 > g2:
                 if g4 == 4 and g1 == 1:
                     if g3 == 3:
                         # melhor individio
@@ -301,4 +301,4 @@ class AlgoritmoGenetico:
         print("Geração: {} | Indivíduo: {} | Aptidão: {}".format(geracao, quem, apt))
 
     def exibe_grafico_evolucao(self, g, apt):
-self.grafico.plot(g, apt)
+        self.grafico.plot(g, apt)
