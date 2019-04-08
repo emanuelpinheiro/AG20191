@@ -301,4 +301,5 @@ class AlgoritmoGenetico:
         print("Geração: {} | Indivíduo: {} | Aptidão: {}".format(geracao, quem, apt))
 
     def exibe_grafico_evolucao(self, g, apt):
-        self.grafico.plot(g, apt)
+        pass
+        #self.grafico.plot(g, apt)
