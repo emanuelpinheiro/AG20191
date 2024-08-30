@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 class AlgoritmoGenetico:
     def __init__(self, TAM_POP, TAM_GENE, numero_geracoes = 100):
-        print("Algoritmo Genético")
+        print("Algoritmo Genético. Executado por Emanuel Pinheiro Cirqueira")
         self.TAM_POP = TAM_POP
         self.TAM_GENE = TAM_GENE
         self.POP = []
@@ -17,10 +17,10 @@ class AlgoritmoGenetico:
         self.aptidao_perc = [] #porcentagem
         self.numero_geracoes = numero_geracoes
         self.populacao_inicial()
-        #self.grafico = plt.plot([],[])
+        self.grafico = plt.plot([],[])
     
     def populacao_inicial(self):
-        print("Criando pupulação inicial!")
+        print("Criando população inicial!")
         
         for i in range(self.TAM_POP):
             self.POP.append(np.random.randint(0, 2, self.TAM_GENE))
@@ -48,15 +48,14 @@ class AlgoritmoGenetico:
         tx_cruzamento_uniforme = 70
         tx_elitismo = 0
         tx_mutacao = 2
-        tx_elitismo = 10
         
         for geracao in range(self.numero_geracoes):
             self.POP_AUX = []
             
             self.avaliacao()
             q, apt = self.pegar_melhor_individuo()
-            #self.exibe_grafico_evolucao(geracao, apt)
-            #self.exibe_melhor_individuo(geracao)
+            self.exibe_grafico_evolucao(geracao, apt)
+            self.exibe_melhor_individuo(geracao)
             
             self.pre_roleta()
             
@@ -79,8 +78,8 @@ class AlgoritmoGenetico:
                 self.cruzamento_uniforme(pai1, pai2)  
             
             #elitismo
-            qtd = (self.TAM_POP * tx_elitismo)/100
-            print("Elitismo")
+            #qtd = (self.TAM_POP * tx_elitismo)/100
+            #print("Elitismo")
             #self.elitismo(qtd)
             
             ## GARANTIR O TAMANHO POPULACIONAL.
@@ -92,7 +91,7 @@ class AlgoritmoGenetico:
                 self.mutacao(quem)
             
             self.substituicao()
-        #self.grafico.show()
+        self.grafico.show()
         
     def cruzamento_simples(self, pai1, pai2):
         #print("Cruzamento com 1 ponto de corte.")

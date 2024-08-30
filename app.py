@@ -10,3 +10,4 @@ Algoritmo Genético
 from AlgoritmoGeneticoSudoku import AlgoritmoGenetico as AG
 
 ag = AG(5, 16, 4)
+ag.operadores_geneticos()

@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 class AlgoritmoGenetico:
     def __init__(self, TAM_POP, TAM_GENE, numero_geracoes = 100):
-        print("Algoritmo Genético")
+        print("Algoritmo Genético. Executado por Emanuel Pinheiro Cirqueira")
         self.TAM_POP = TAM_POP
         self.TAM_GENE = TAM_GENE
         self.TAM_MATRIZ = int(TAM_GENE ** (1/2))
@@ -19,10 +19,10 @@ class AlgoritmoGenetico:
         self.populacao_inicial()
         self.aptidao_coluna = []
         self.aptidao_quadrante = []
-        #self.grafico = plt.plot([],[])
+        self.grafico = plt.plot([],[])
     
     def populacao_inicial(self):
-        print("Criando pupulação inicial!")
+        print("Criando população inicial!")
         
         for k in range(self.TAM_POP):
             individuo = np.zeros(self.TAM_GENE, dtype=int)
@@ -65,15 +65,14 @@ class AlgoritmoGenetico:
         tx_cruzamento_uniforme = 70
         tx_elitismo = 0
         tx_mutacao = 2
-        tx_elitismo = 10
         
         for geracao in range(self.numero_geracoes):
             self.POP_AUX = []
             
             self.avaliacao()
             q, apt = self.pegar_melhor_individuo()
-            #self.exibe_grafico_evolucao(geracao, apt)
-            #self.exibe_melhor_individuo(geracao)
+            self.exibe_grafico_evolucao(geracao, apt)
+            self.exibe_melhor_individuo(geracao)
             
             self.pre_roleta()
             
@@ -96,8 +95,8 @@ class AlgoritmoGenetico:
                 self.cruzamento_uniforme(pai1, pai2)  
             
             #elitismo
-            qtd = (self.TAM_POP * tx_elitismo)/100
-            print("Elitismo")
+            #qtd = (self.TAM_POP * tx_elitismo)/100
+            #print("Elitismo")
             #self.elitismo(qtd)
             
             ## GARANTIR O TAMANHO POPULACIONAL.
